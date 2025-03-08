@@ -1,0 +1,39 @@
+{
+  "name": "office-plugins-pro",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "check-updates": "node scripts/check-updates.js",
+    "update-packages": "node scripts/update-packages.js"
+  },
+  "dependencies": {
+    "critters": "^0.0.20",
+    "framer-motion": "^11.0.5",
+    "next": "^15.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.57",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.17",
+    "cssnano": "^6.0.3",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
