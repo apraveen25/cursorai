@@ -20,6 +20,12 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Handle initial mounting
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
@@ -34,13 +40,16 @@ export default function Navbar() {
       setActiveLink(window.location.pathname);
     };
 
+    // Set initial values
+    handleScroll();
+    handlePathChange();
+
     window.addEventListener('scroll', handleScroll);
-    handlePathChange(); // Set initial path
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMounted]); // Only run after component is mounted
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);

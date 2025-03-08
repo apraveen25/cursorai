@@ -17,7 +17,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ClientOnly>
+        <ClientOnly fallback={
+          <div className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm py-4">
+            <div className="container mx-auto px-4 flex justify-between items-center">
+              <div className="flex items-center space-x-2">
+                <div className="w-10 h-10 rounded-md bg-gradient-to-r from-primary to-secondary"></div>
+                <div className="w-32 h-6 bg-gradient-to-r from-primary to-secondary opacity-20 rounded"></div>
+              </div>
+              <div className="hidden md:flex space-x-4">
+                {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                  <div key={i} className="w-16 h-6 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        }>
           <Navbar />
         </ClientOnly>
         <main>{children}</main>
