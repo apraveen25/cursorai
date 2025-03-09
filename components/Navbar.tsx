@@ -21,7 +21,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
   const [isMounted, setIsMounted] = useState(false);
-  const [navHeight, setNavHeight] = useState(0);
 
   // Handle initial mounting
   useEffect(() => {
@@ -49,19 +48,14 @@ export default function Navbar() {
     if (isMounted) {
       const navElement = document.querySelector('nav');
       if (navElement) {
-        const height = navElement.offsetHeight;
-        setNavHeight(height);
-        
         // Set CSS variable for use in global styles
-        document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+        document.documentElement.style.setProperty('--navbar-height', `${navElement.offsetHeight}px`);
       }
 
       // Update height on resize
       const handleResize = () => {
         if (navElement) {
-          const height = navElement.offsetHeight;
-          setNavHeight(height);
-          document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+          document.documentElement.style.setProperty('--navbar-height', `${navElement.offsetHeight}px`);
         }
       };
 
