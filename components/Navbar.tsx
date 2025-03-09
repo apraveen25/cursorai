@@ -21,11 +21,56 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
   const [isMounted, setIsMounted] = useState(false);
+  const [navHeight, setNavHeight] = useState(0);
 
   // Handle initial mounting
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Effect to handle body scroll lock when menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      // Lock body scroll when menu is open
+      document.body.classList.add('no-scroll');
+    } else {
+      // Restore scroll when menu is closed
+      document.body.classList.remove('no-scroll');
+    }
+
+    return () => {
+      // Cleanup: ensure scroll is restored when component unmounts
+      document.body.classList.remove('no-scroll');
+    };
+  }, [isMenuOpen]);
+
+  // Effect to measure navbar height for proper mobile menu positioning
+  useEffect(() => {
+    if (isMounted) {
+      const navElement = document.querySelector('nav');
+      if (navElement) {
+        const height = navElement.offsetHeight;
+        setNavHeight(height);
+        
+        // Set CSS variable for use in global styles
+        document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+      }
+
+      // Update height on resize
+      const handleResize = () => {
+        if (navElement) {
+          const height = navElement.offsetHeight;
+          setNavHeight(height);
+          document.documentElement.style.setProperty('--navbar-height', `${height}px`);
+        }
+      };
+
+      window.addEventListener('resize', handleResize);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, [isMounted, scrolled]); // Also update when scrolled changes as it affects navbar height
 
   useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
@@ -65,7 +110,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-2 group">
             <div className="relative w-10 h-10 overflow-hidden rounded-md transition-all duration-300 group-hover:shadow-md">
               <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary flex items-center justify-center text-white font-bold text-xl">
-                OP
+                OA
               </div>
             </div>
             <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -107,12 +152,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Using the CSS classes from globals.css */}
       <div 
-        className={`md:hidden fixed inset-0 bg-white z-40 transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-        style={{ top: '60px' }}
+        className={`mobile-menu-container ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ boxShadow: isMenuOpen ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' : 'none' }}
       >
         <div className="container-custom py-6">
           <div className="flex flex-col space-y-2">
@@ -141,12 +184,11 @@ export default function Navbar() {
         </div>
       </div>
       
-      {/* Overlay for mobile menu */}
+      {/* Overlay for mobile menu - Using the CSS class from globals.css */}
       {isMenuOpen && (
         <div 
-          className="md:hidden fixed inset-0 bg-black/50 z-30"
+          className="mobile-menu-overlay"
           onClick={() => setIsMenuOpen(false)}
-          style={{ top: '60px' }}
         />
       )}
     </nav>

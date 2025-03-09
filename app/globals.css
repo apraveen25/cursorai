@@ -17,6 +17,11 @@ body {
   overflow-x: hidden;
 }
 
+/* When mobile menu is open, prevent content scrolling */
+body.no-scroll {
+  overflow: hidden;
+}
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -107,6 +112,18 @@ p {
   .list-check li:before {
     content: "✓";
     @apply text-primary font-bold mr-2 flex-shrink-0;
+  }
+
+  /* Mobile menu styles */
+  .mobile-menu-container {
+    @apply fixed inset-x-0 bg-white z-40 transform transition-transform duration-300 ease-in-out overflow-y-auto;
+    height: calc(100vh - var(--navbar-height, 60px));
+    top: var(--navbar-height, 60px);
+  }
+  
+  .mobile-menu-overlay {
+    @apply fixed inset-0 bg-black/50 z-30;
+    top: var(--navbar-height, 60px);
   }
 }
 

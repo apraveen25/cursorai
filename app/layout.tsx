@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ClientOnly fallback={
           <div className="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm py-4">
             <div className="container mx-auto px-4 flex justify-between items-center">
@@ -34,7 +34,7 @@ export default function RootLayout({
         }>
           <Navbar />
         </ClientOnly>
-        <main>{children}</main>
+        <main className="flex-grow pt-2">{children}</main>
         <ClientOnly>
           <Footer />
         </ClientOnly>
