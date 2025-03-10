@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'export', // Static HTML export for Azure Static Web Apps
   distDir: '.next',
+  outDir: 'out', // Output directory for the static export
   images: {
     domains: ['images.unsplash.com'],
     formats: ['image/avif', 'image/webp'],

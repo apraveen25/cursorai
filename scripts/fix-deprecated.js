@@ -27,8 +27,8 @@ const deprecatedPackages = [
   { name: 'rimraf', version: '^5.0.5' },
   { name: 'glob', version: '^10.3.10' },
   { name: 'eslint', version: '^8.56.0' },
-  { name: '@humanwhocodes/config-array', version: '^1.0.0' },
-  { name: '@humanwhocodes/object-schema', version: '^2.0.3' },
+  { name: '@humanwhocodes/config-array', version: '^0.11.13' },
+  { name: '@humanwhocodes/object-schema', version: '^1.2.1' },
   { name: 'lru-cache', version: '^10.2.0' }
 ];
 
