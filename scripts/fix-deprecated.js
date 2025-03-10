@@ -26,9 +26,9 @@ console.log(`${colors.cyan}Fixing deprecated dependencies...${colors.reset}`);
 const deprecatedPackages = [
   { name: 'rimraf', version: '^5.0.5' },
   { name: 'glob', version: '^10.3.10' },
-  { name: 'eslint', version: '^9.0.0' },
-  { name: '@eslint/config-array', version: '^1.0.0' },
-  { name: '@eslint/object-schema', version: '^1.0.0' },
+  { name: 'eslint', version: '^8.56.0' },
+  { name: '@humanwhocodes/config-array', version: '^1.0.0' },
+  { name: '@humanwhocodes/object-schema', version: '^2.0.3' },
   { name: 'lru-cache', version: '^10.2.0' }
 ];
 

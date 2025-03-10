@@ -2,14 +2,16 @@
   "platform": {
     "apiRuntime": "node:20"
   },
+  "trailingSlash": "auto",
   "navigationFallback": {
     "rewrite": "/index.html"
   },
   "routes": [
     {
-      "route": "/api/*",
-      "methods": ["GET", "POST", "PUT", "DELETE"],
-      "rewrite": "/api/index"
+      "route": "/images/*",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
     },
     {
       "route": "/_next/static/*",
